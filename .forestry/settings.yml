@@ -10,6 +10,8 @@ sections:
 - type: jekyll-posts
   label: Posts
   create: all
+  templates:
+  - front-matter-template
 - type: directory
   path: _news
   label: News
