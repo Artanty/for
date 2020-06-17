@@ -1,0 +1,25 @@
+---
+label: front-matter-template
+hide_body: false
+fields:
+- type: text
+  name: layout
+  label: layout
+- type: text
+  name: permalink
+  label: permalink
+- type: text
+  name: title
+  label: title
+- type: datetime
+  name: date
+  label: date
+- type: file
+  name: thumbnail
+  label: thumbnail
+- type: text
+  name: author
+  label: author
+- type: text
+  name: tag
+  label: tag
