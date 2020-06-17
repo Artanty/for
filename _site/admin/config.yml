@@ -1,0 +1,149 @@
+backend:
+  name: github
+  repo: Artanty/netlify
+  branch: master
+media_folder: "images/uploads"
+# media_folder: "static/images/uploads"
+# media_library:
+#   name: uploadcare
+#   config:
+#     publicKey: demopublickey
+# media_folder: static/media #куда положим фотки
+# public_folder: /media
+collections:
+  - name: "post" #Used in routes, e.g. /admin/collections/blog
+    label: "Статьи"
+    folder: "_posts/"
+    create: true # Allow users to create new documents in this collection
+    # slug: "{{year}}-{{month}}-{{day}}-{{myslug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: "{{year}}-{{month}}-{{day}}-{{permalink}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    # path: '{{year}}-{{month}}-{{day}}-{{foldermy}}/{{year}}-{{month}}-{{day}}-{{foldermy}}-index'
+    editor:
+      preview: false
+    fields: # The fields for each document, usually in front matter
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "permalink", name: "permalink", widget: "string", default: "/index.html" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Cover Image", name: "thumbnail", widget: "image" }
+      - {
+          label: "Автор",
+          name: "author",
+          widget: "relation",
+          collection: "authors",
+          displayFields: [display_name],
+          searchFields: [display_name],
+          valueField: "name"
+        }
+      - {
+          label: "Tag",
+          name: "tag",
+          widget: "relation",
+          collection: "tags",
+          displayFields: [display_name],
+          searchFields: [display_name],
+          valueField: "name"
+        }
+      - { label: "Body", name: "body", widget: "markdown" }
+  - name: "authors"
+    label: "Авторы"
+    folder: "_authors/"
+    # slug: "{{name}}"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "author" }
+      - { label: "Имя", name: "display_name", widget: "string" }
+      
+      - { label: "URL", name: "permalink", widget: "string", default: "latin_url" }
+      - { label: "Short Name", name: "name", widget: "hidden", default: "{{permalink}}"}
+      
+      - { label: "Должность", name: "position", widget: "string" }
+      - { label: "Аватар", name: "thumbnail", widget: "image" }
+      - { label: "Био", name: "body", widget: "markdown" }
+  - name: "tags"
+    label: "Tags"
+    folder: "_tags/"
+    create: true
+    editor:
+      preview: false
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "tag" }
+      - { label: "Название", name: "display_name", widget: "string" }
+
+      - { label: "URL", name: "permalink", widget: "string", default: "latin_url" }
+      - { label: "Short Name", name: "name", widget: "hidden", default: "{{permalink}}"}
+
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Cover Image", name: "thumbnail", widget: "image" }
+  - name: "news_post"
+    label: "Новости"
+    folder: "_news/"
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{permalink}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    editor:
+      preview: false
+    fields: # The fields for each document, usually in front matter
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "permalink", name: "permalink", widget: "string", default: "/index.html" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Cover Image", name: "thumbnail", widget: "image" }
+      # - {
+      #     label: "Автор",
+      #     name: "author",
+      #     widget: "relation",
+      #     collection: "authors",
+      #     displayFields: [display_name],
+      #     searchFields: [display_name],
+      #     valueField: "name"
+      #   }
+      # - {
+      #     label: "Tag",
+      #     name: "tag",
+      #     widget: "relation",
+      #     collection: "tags",
+      #     displayFields: [display_name],
+      #     searchFields: [display_name],
+      #     valueField: "name"
+      #   }
+      - { label: "Body", name: "body", widget: "markdown" }
+  
+  - name: "pages"
+    label: "Pages"
+    editor:
+      preview: false
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "about.md"
+        fields:
+          - {
+              label: "Title",
+              name: "title",
+              widget: "hidden",
+              default: "about",
+            }
+          - {
+              label: "Layout",
+              name: "layout",
+              widget: "hidden",
+              default: "about",
+            }
+          - { label: "Body", name: "body", widget: "markdown" }
+  - name: "config"
+    label: "Config"
+    editor:
+      preview: false
+    files:
+      - label: "Navigation"
+        name: "navigation"
+        file: "_data/navigation.yml"
+        fields:
+          - label: "Navigation Items"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Link, name: link, widget: string }
