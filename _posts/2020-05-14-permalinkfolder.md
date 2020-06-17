@@ -1,11 +1,12 @@
 ---
 layout: post
 permalink: articles/kucha_pisem
-title: Куча писем
-date: 2020-05-14T06:39:55.682Z
-thumbnail: /images/uploads/joanna-kosinska-b6ydtys2igy-unsplash.jpg
+title: Куча писем11
+date: 2020-05-14T06:39:55.682+00:00
+thumbnail: "/images/uploads/joanna-kosinska-b6ydtys2igy-unsplash.jpg"
 author: antoshkin
 tag: techno
+
 ---
 По словам Джека Кларка (Jack Clark), директора по вопросам политики OpenAI, этот пример демонстрирует, как подобные технологии могут видоизменить процессы онлайн-дезинформации или троллинга при том, что в некоторых из них уже используется некая форма автоматизации. «Если цена создания текста начнет падать, злоумышленники могут начать действовать иначе».
 
